@@ -127,7 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="conversions.cpp" />
     <ClCompile Include="FunctionConvertTemperatureValues.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="conversions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

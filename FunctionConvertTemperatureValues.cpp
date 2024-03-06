@@ -4,9 +4,38 @@
 #include <iomanip>
 #include <cmath>
 
+#include "conversions.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
+
+bool FixFlow()
+{
+    if (std::cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore();
+        fflush(stdin);
+        return true;
+        //        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+template <typename T>
+void Input(T& side1, const std::string& message)
+{
+    do
+    {
+        std::cout << message << '\n';
+        std::cin >> side1;
+    } while (FixFlow());
+}
+
 
 void PrintPreliminaryMessage()
 {
@@ -14,31 +43,16 @@ void PrintPreliminaryMessage()
 }
 
 void InputValues(double& min, double& max, double& interval)
-{
-    /*
+{   
     do
     {
-        std::cout << "Введите минимальное значение в °C, больше -273,15";
-        std::cin >> min;
-    }
-    */
-    std::cout << "Введите минимальное значение в °C, больше -273,15";
-    std::cin >> min;
-    std::cout << "Введите максимальное значение в °C ";
-    std::cin >> max;
-    std::cout << "Введите интервал в °C ";
-    std::cin >> interval;
+        Input(min, "Введите минимальное значение в °C, больше -273,15 ");
+    } while (min < -273.15);
+    Input(max, "Введите максимальное значение в °C ");    
+    Input(interval, "Введите интервал в °C ");
 }
 
-double ConvertCelsiusToFahrenheit(const double cel)
-{
-    return 1.8 * cel + 32;
-}
 
-double ConvertCelsiusToKelvin(const double cel)
-{
-    return cel + 273.15;
-}
 
 void PrintHeaderTemperature()
 {
